@@ -1,0 +1,259 @@
+openapi: 3.0.0
+info:
+  title: E-Commerce API
+  description: API permettant de récupérer des produits et de gérer les commandes
+  version: 1.0.0
+paths:
+  /products:
+    get:
+      summary: Récupérer la liste des produits
+      description: Retourne une liste de produits disponibles
+      responses:
+        '200':
+          description: Succès
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+  /orders:
+    post:
+      summary: Créer une commande
+      description: Permet de passer une commande avec une liste de produits
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '201':
+          description: Commande créée avec succès
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "Ordinateur portable"
+        price:
+          type: number
+          format: float
+          example: 999.99
+    Order:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1001
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        total:
+          type: number
+          format: float
+          example: 1999.98
+
+
+# openapi: 3.0.0
+# info:
+#   title: Node.js API with Swagger
+#   description: A simple API with CRUD operations
+#   version: 1.0.0
+# servers:
+#   - url: http://localhost:3000
+
+# paths:
+#   /users:
+#     get:
+#       summary: Get all users
+#       responses:
+#         200:
+#           description: A list of users
+#           content:
+#             application/json:
+#               schema:
+#                 type: array
+#                 items:
+#                   type: object
+#                   properties:
+#                     id:
+#                       type: integer
+#                       example: 1
+#                     name:
+#                       type: string
+#                       example: "John Doe"
+#                     email:
+#                       type: string
+#                       example: johndoe@example.com
+#                     password:
+#                       type: string
+#                       example: "password"
+#                     phone:
+#                       type: integer
+#                       example: 123456789
+#                     profile:
+#                       type: string
+#                       example: "grossiste"
+
+#     post:
+#       summary: Create a new user
+#       requestBody:
+#         required: true
+#         content:
+#           application/json:
+#             schema:
+#               type: object
+#               properties:
+#                 name:
+#                   type: string
+#                   example: "Alice"
+#                 email:
+#                   type: string
+#                   example: alice@example.com
+#                 password:
+#                   type: string
+#                   example: "password"
+#                 phone:
+#                   type: integer
+#                   example: 123456789
+#                 profile:
+#                   type: string
+#                   example: "grossiste"
+#       responses:
+#         201:
+#           description: User created
+
+#   /users/{id}:
+#     get:
+#       summary: Get a user by ID
+#       parameters:
+#         - name: id
+#           in: path
+#           required: true
+#           schema:
+#             type: integer
+#       responses:
+#         200:
+#           description: User found
+#           content:
+#             application/json:
+#               schema:
+#                 type: object
+#                 properties:
+#                   id:
+#                     type: integer
+#                     example: 1
+#                   name:
+#                     type: string
+#                     example: "John Doe"
+#                   email:
+#                     type: string
+#                     example: johndoe@example.com
+#                   password:
+#                     type: string
+#                     example: "password"
+#                   phone:
+#                     type: integer
+#                     example: 123456789
+#                   profile:
+#                     type: string
+#                     example: "grossiste"
+#         404:
+#           description: User not found
+
+#     put:
+#       summary: Update a user by ID
+#       parameters:
+#         - name: id
+#           in: path
+#           required: true
+#           schema:
+#             type: integer
+#       requestBody:
+#         required: true
+#         content:
+#           application/json:
+#             schema:
+#               type: object
+#               properties:
+#                 name:
+#                   type: string
+#                   example: "Updated Name"
+#                 email:
+#                   type: string
+#                   example: johndoe@example.com
+#                 password:
+#                   type: string
+#                   example: "password"
+#                 phone:
+#                   type: integer
+#                   example: 123456789
+#                 profile:
+#                   type: string
+#                   example: "grossiste"
+#       responses:
+#         200:
+#           description: User updated
+
+#     delete:
+#       summary: Delete a user by ID
+#       parameters:
+#         - name: id
+#           in: path
+#           required: true
+#           schema:
+#             type: integer
+#       responses:
+#         204:
+#           description: User deleted
+#         404:
+#           description: User not found
+
+
+
+# # openapi: 3.0.0
+# # info:
+# #   title: Node.js API with Swagger
+# #   description: A simple API documented using Swagger
+# #   version: 1.0.0
+# # servers:
+# #   - url: http://localhost:3000
+
+# # paths:
+# #   /:
+# #     get:
+# #       summary: Returns a welcome message
+# #       responses:
+# #         200:
+# #           description: A successful response
+# #           content:
+# #             application/json:
+# #               schema:
+# #                 type: string
+# #                 example: "Welcome to the Node.js API!"
+
+# #   # /api/hello:
+# #   #   get:
+# #   #     summary: Returns a greeting message
+# #   #     responses:
+# #   #       200:
+# #   #         description: Successfully returns a message
+# #   #         content:
+# #   #           application/json:
+# #   #             schema:
+# #   #               type: object
+# #   #               properties:
+# #   #                 message:
+# #   #                   type: string
+# #   #                   example: "Hello, World!"
